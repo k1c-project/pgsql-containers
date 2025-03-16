@@ -1,0 +1,9 @@
+ARG image=alt-c10f1-systemd
+FROM $image
+
+RUN apt-get update \
+&& apt-get install postgresql15-1C-server postgresql15-1C-contrib -y \
+&& apt-get clean \
+&& systemctl enable postgresql
+
+ENTRYPOINT ["/sbin/init"]

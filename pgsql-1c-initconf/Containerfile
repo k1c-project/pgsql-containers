@@ -1,0 +1,11 @@
+ARG image=pgsql-1c
+FROM $image
+
+COPY ./pgsql-initconf.sh /pgsql-initconf.sh
+RUN chmod +x /pgsql-initconf.sh
+
+RUN systemctl disable postgresql
+
+
+ENTRYPOINT ["/pgsql-initconf.sh"]
+#ENTRYPOINT ["/bin/bash"]

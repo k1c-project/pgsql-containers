@@ -1,0 +1,11 @@
+ARG image=pgsql-1c
+FROM $image
+
+COPY ./pgsql-icreatedb.sh /pgsql-icreatedb.sh
+RUN chmod +x /pgsql-icreatedb.sh
+
+RUN systemctl disable postgresql
+
+
+ENTRYPOINT ["/pgsql-icreatedb.sh"]
+#ENTRYPOINT ["/bin/bash"]
